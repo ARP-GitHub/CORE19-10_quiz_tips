@@ -298,73 +298,10 @@ describe("CORE19-10_quiz_tips", function () {
     });
 
     it('', async function () {
-        const expected = url + '/quizzes/randomcheck/1?answer=NOK';
-        this.name = `10: Checking that the server accepts wrong answers at ${expected}...`;
-        this.score = 1;
-        if (error_critical) {
-            this.msg_err = error_critical;
-            should.not.exist(error_critical);
-        } else {
-            this.msg_ok = `Wrong answer sent successfully to ${expected}\n\t\tReceived:${browser.text('body')}`;
-            [error_nav, resp] = await to(browser.visit(expected));
-            this.msg_err = `Server not responding at ${expected}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
-            should.not.exist(error_nav);
-        }
-    });
-
-
-    it('', async function () {
-        const expected = '0';
-        let myurl = url + '/quizzes/randomcheck/1?answer=NOK';
-        this.name = `11: Checking the score at ${myurl}...`;
-        this.score = 1;
-        if (error_critical) {
-            this.msg_err = error_critical;
-            should.not.exist(error_critical);
-        } else {
-            this.msg_ok = `Found the right score '${expected}' at ${myurl}`;
-            this.msg_err = `Score '${expected}' not found at ${myurl}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
-            Utils.search(expected, browser.text('body')).should.be.equal(true);
-        }
-    });
-
-    it('', async function () {
-        const expected = url + '/randomcheck/1?answer=OK';
-        this.name = `12: Checking that the server accepts right answers at ${expected}...`;
-        this.score = 1;
-        if (error_critical) {
-            this.msg_err = error_critical;
-            should.not.exist(error_critical);
-        } else {
-            this.msg_ok = `Right answer sent successfully to ${expected}\n\t\tReceived:${browser.text('body')}`;
-            let error_nav;
-            [error_nav, resp] = await to(browser.visit(expected));
-            this.msg_err = `Server not responding at ${expected}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
-            should.not.exist(error_nav);
-        }
-    });
-
-
-    it('', async function () {
-        const expected = '1';
-        let myurl = url + '/randomcheck/1?answer=OK';
-        this.name = `13: Checking the score at ${myurl}...`;
-        this.score = 1;
-        if (error_critical) {
-            this.msg_err = error_critical;
-            should.not.exist(error_critical);
-        } else {
-            this.msg_ok = `Found the right score '${expected}' at ${myurl}`;
-            this.msg_err = `The right score '${expected}' has not been found at ${myurl}\n\t\tReceived:${browser.text('body')}`;
-            Utils.search(expected, browser.text('body')).should.be.equal(true);
-        }
-    });
-
-    it('', async function () {
         const expected =  /[edit|add]/i;
         let myurl = url + "quizzes/5/tips/2/edit";
         this.name = `14: Checking that the server lets the registered user edit the clues...`;
-        this.score = 1;
+        this.score = 2;
         if (error_critical) {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
