@@ -24,7 +24,7 @@ const quizzes_orig = path.join(path_assignment, 'quiz.sqlite');
 const quizzes_back = path.join(path_assignment, 'quiz.original.sqlite');
 const quizzes_test = path.join(__dirname, 'quiz.sqlite');
 const browser = new Browser();
-const url = "http://localhost:5000";
+const url = "http://localhost:3000";
 
 // HELPERS
 const timeout = ms => new Promise(res => setTimeout(res, ms));
@@ -299,7 +299,7 @@ describe("CORE19-10_quiz_tips", function () {
 
     it('', async function () {
         const expected =  /[edit|add]/i;
-        let myurl = url + "quizzes/5/tips/2/edit";
+        let myurl = url + "/quizzes/5/tips/2/edit";
         this.name = `14: Checking that the server lets the registered user edit the clues...`;
         this.score = 2;
         if (error_critical) {
