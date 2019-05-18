@@ -191,24 +191,9 @@ describe("CORE19-10_quiz_tips", function () {
     });
 
     it('', async function () {
-        const expected = url + '/quizzes/randomplay';
-        this.name = `9: Checking that the server responds at ${expected}...`;
-        this.score = 1;
-        if (error_critical) {
-            this.msg_err = error_critical;
-            should.not.exist(error_critical);
-        } else {
-            this.msg_ok = `Server responded at ${expected}`;
-            [error_nav, resp] = await to(browser.visit(expected));
-            this.msg_err = `Server not responding at ${expected}\nError:${error_nav}\nReceived:${browser.text('body')}`;
-            should.not.exist(error_nav);
-        }
-    });
-
-    it('', async function () {
         const expected = 'Anonymous';
         let url = url + '/quizzes/1';
-        this.name = `10: Checking that the server shows the anonymous user...`;
+        this.name = `9: Checking that the server shows the anonymous user...`;
         this.score = 1;
         if (error_critical) {
             this.msg_err = error_critical;
@@ -226,7 +211,7 @@ describe("CORE19-10_quiz_tips", function () {
     it('', async function () {
         const expected = 'registrado';
         let url = url + '/quizzes/5';
-        this.name = `11: Checking that the server shows the registered user...`;
+        this.name = `10: Checking that the server shows the registered user...`;
         this.score = 1;
         if (error_critical) {
             this.msg_err = error_critical;
@@ -246,7 +231,7 @@ describe("CORE19-10_quiz_tips", function () {
         const user = 'registrado';
         let url_login = url + "/session";
         let myurl = url + '/quizzes/5';
-        this.name = `12: Checking that the server shows clues to the registered user...`;
+        this.name = `11: Checking that the server shows clues to the registered user...`;
         this.score = 1;
         if (error_critical) {
             this.msg_err = error_critical;
@@ -282,8 +267,8 @@ describe("CORE19-10_quiz_tips", function () {
     it('', async function () {
         const expected = 'registrado';
         let myurl = url + '/quizzes/5';
-        this.name = `13: Checking that the server shows the registered user in the clues...`;
-        this.score = 1;
+        this.name = `12: Checking that the server shows the registered user in the clues...`;
+        this.score = 2;
         if (error_critical) {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
@@ -300,7 +285,7 @@ describe("CORE19-10_quiz_tips", function () {
     it('', async function () {
         const expected =  /[edit|add]/i;
         let myurl = url + "/quizzes/5/tips/2/edit";
-        this.name = `14: Checking that the server lets the registered user edit the clues...`;
+        this.name = `13: Checking that the server lets the registered user edit the clues...`;
         this.score = 2;
         if (error_critical) {
             this.msg_err = error_critical;
