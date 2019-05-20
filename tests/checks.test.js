@@ -139,7 +139,7 @@ describe("CORE19-10_quiz_tips", function () {
         } else {
             this.msg_ok = `'${expected}' has been launched correctly`;
             this.msg_err = `Error launching '${expected}'`;
-            let server = spawn("node", [expected], {cwd: path_assignment});
+            server = spawn("node", [expected], {cwd: path_assignment});
             let error_launch = "";
             server.on('error', function (data) {
                 error_launch += data
@@ -301,7 +301,7 @@ describe("CORE19-10_quiz_tips", function () {
     after("Restoring the original file", async function () {
         if (server) {
             server.kill();
-            await timeout(T_WAIT * 1000);
+            await to(timeout(5 * 1000));
         }
         try {
             fs.copySync(quizzes_back, quizzes_orig, {"overwrite": true});
