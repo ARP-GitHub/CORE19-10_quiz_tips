@@ -241,6 +241,10 @@ describe("CORE19-10_quiz_tips", function () {
             [error_nav, resp] = await to(browser.visit(url_login));
             this.msg_err = `Could not open login url '${url_login}'\n\t\t\tError: >>${error_nav}`;
             should.not.exist(error_nav);
+            this.msg_err = `Could not find login input at '${url_login}'`;
+            browser.assert.element('input[id=login]');
+            this.msg_err = `Could not find login password at '${url_login}'`;
+            browser.assert.element('input[id=password]');
             [error_nav, resp] = await to(browser.fill('input[id=login]', user));
             this.msg_err = `Could not fill login input at '${url_login}'\n\t\t\tError: >>${error_nav}`;
             should.not.exist(error_nav);
