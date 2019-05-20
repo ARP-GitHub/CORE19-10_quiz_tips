@@ -55,7 +55,6 @@ describe("CORE19-10_quiz_tips", function () {
         } else {
             this.msg_ok = `The file '${path_json}' has been found`;
             this.msg_err = `The file '${path_json}' has not been found`;
-            const path_json = path.join(path_assignment, 'package.json');
             const [json_nok, json_ok] = await to(fs.pathExists(path_json));
             if (json_nok || !json_ok) {
                 this.msg_err = `The file '${path_json}' has not been found`;
@@ -192,36 +191,36 @@ describe("CORE19-10_quiz_tips", function () {
 
     it('', async function () {
         const expected = 'Anonymous';
-        let url = url + '/quizzes/1';
+        let myurl = url + '/quizzes/1';
         this.name = `9: Checking that the server shows the anonymous user...`;
         this.score = 1;
         if (error_critical) {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
         } else {
-            this.msg_ok = `Found the anonymous user '${expected}' at ${url}`;
-            [error_nav, resp] = await to(browser.visit(url));
-            this.msg_err = `Server not responding at ${url}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
+            this.msg_ok = `Found the anonymous user '${expected}' at ${myurl}`;
+            [error_nav, resp] = await to(browser.visit(myurl));
+            this.msg_err = `Server not responding at ${myurl}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
             should.not.exist(error_nav);
-            this.msg_err = `Anonymous user not found at ${url}\n\t\tReceived:${browser.text('body')}`;
+            this.msg_err = `Anonymous user not found at ${myurl}\n\t\tReceived:${browser.text('body')}`;
             Utils.search(expected, browser.text('body')).should.be.equal(true);
         }
     });
 
     it('', async function () {
         const expected = 'registrado';
-        let url = url + '/quizzes/5';
+        let myurl = url + '/quizzes/5';
         this.name = `10: Checking that the server shows the registered user...`;
         this.score = 1;
         if (error_critical) {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
         } else {
-            this.msg_ok = `Found the registered user '${expected}' at ${url}`;
-            [error_nav, resp] = await to(browser.visit(url));
-            this.msg_err = `Server not responding at ${url}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
+            this.msg_ok = `Found the registered user '${expected}' at ${myurl}`;
+            [error_nav, resp] = await to(browser.visit(myurl));
+            this.msg_err = `Server not responding at ${myurl}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
             should.not.exist(error_nav);
-            this.msg_err = `Registered user not found at ${url}\n\t\tReceived:${browser.text('body')}`;
+            this.msg_err = `Registered user not found at ${myurl}\n\t\tReceived:${browser.text('body')}`;
             Utils.search(expected, browser.text('body')).should.be.equal(true);
         }
     });
@@ -241,12 +240,6 @@ describe("CORE19-10_quiz_tips", function () {
             let error_nav;
             [error_nav, resp] = await to(browser.visit(url_login));
             this.msg_err = `Could not open login url '${url_login}'\n\t\t\tError: >>${error_nav}`;
-            should.not.exist(error_nav);
-            [error_nav, resp] = await to(browser.assert.element('input[id=login]'));
-            this.msg_err = `Could not find login input at '${url_login}'\n\t\t\tError: >>${error_nav}`;
-            should.not.exist(error_nav);
-            [error_nav, resp] = await to(browser.assert.element('input[id=password]'));
-            this.msg_err = `Could not find login password at '${url_login}'\n\t\t\tError: >>${error_nav}`;
             should.not.exist(error_nav);
             [error_nav, resp] = await to(browser.fill('input[id=login]', user));
             this.msg_err = `Could not fill login input at '${url_login}'\n\t\t\tError: >>${error_nav}`;
