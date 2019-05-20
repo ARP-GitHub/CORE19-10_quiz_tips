@@ -116,8 +116,8 @@ describe("CORE19-10_quiz_tips", function () {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
         } else {
-            this.msg_ok = "'quizzes.sqlite' replaced successfully";
-            this.msg_err = "Error replacing 'quizzes.sqlite'";
+            this.msg_ok = "'quiz.sqlite' replaced successfully";
+            this.msg_err = "Error replacing 'quiz.sqlite'";
             try {
                 fs.copySync(quizzes_orig, quizzes_back, {"overwrite": true});
             } catch (e) {
@@ -138,6 +138,7 @@ describe("CORE19-10_quiz_tips", function () {
             this.msg_err = error_critical;
         } else {
             this.msg_ok = `'${expected}' has been launched correctly`;
+            this.msg_err = `Error launching '${expected}'`;
             let server = spawn("node", [expected], {cwd: path_assignment});
             let error_launch = "";
             server.on('error', function (data) {
@@ -149,8 +150,8 @@ describe("CORE19-10_quiz_tips", function () {
                 }
             });
             await to(timeout(T_WAIT * 1000));
-            this.msg_err = `Error launching '${expected}': ${error_launch.replace(/\n. |\r/g, " ").trim()}`;
             if (error_launch.length) {
+                this.msg_err = `Error launching '${expected}': ${error_launch.replace(/\n. |\r/g, " ").trim()}`;
                 error_critical = this.msg_err;
             }
         }
@@ -288,11 +289,11 @@ describe("CORE19-10_quiz_tips", function () {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
         } else {
-            this.msg_ok = `Found the registered user '${expected}' in the clues  at ${myurl}`;
+            this.msg_ok = `Found '${expected}' in the clues  at ${myurl}`;
             [error_nav, resp] = await to(browser.visit(myurl));
             this.msg_err = `Server not responding at ${myurl}\n\t\tError:${error_nav}\n\t\tReceived:${browser.text('body')}`;
             should.not.exist(error_nav);
-            this.msg_err = `Registered user not found in the clues at ${myurl}\n\t\tReceived:${browser.text('body')}`;
+            this.msg_err = `'${expected}' not found in the clues at ${myurl}\n\t\tReceived:${browser.text('body')}`;
             Utils.search(expected, browser.text('body')).should.be.equal(true);
         }
     });
